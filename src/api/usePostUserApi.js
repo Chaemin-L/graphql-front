@@ -1,16 +1,16 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
-import { GET_USERS } from "./useGetUsersApi";
+import { gql, useMutation } from "@apollo/client";
 
-export const ADD_USER = gql`
-  mutation PostUser($user: User!) {
-    addUser(user: $user) {
-      id
+export const CREATE_USER = gql`
+  mutation createUser($name: String!, $email: String!) {
+    createUser(name: $name, email: $email) {
       name
-      age
+      email
     }
   }
 `;
 
 export default function usePostUserApi() {
-  return useMutation(ADD_USER, { refetchQueries: [GET_USERS, "getUsers"] });
+  return useMutation(CREATE_USER, {
+    refetchQueries: ["getAllUsers"],
+  });
 }

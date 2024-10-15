@@ -1,15 +1,15 @@
 import { gql, useQuery } from "@apollo/client";
 
-export const GET_USERS = gql`
-  query GetUsers {
+export const GET_ALL_USERS = gql`
+  query getAllUsers {
     users {
       id
       name
-      age
+      email
     }
   }
 `;
 
 export default function useGetUsersApi() {
-  return useQuery(GET_USERS);
+  return useQuery(GET_ALL_USERS);
 }

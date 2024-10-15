@@ -1,15 +1,15 @@
 import { gql, useQuery } from "@apollo/client";
 
-export const GET_ONE_USER = gql`
-  query GetOneUser($id: String!) {
+export const GET_USER_BY_ID = gql`
+  query getUserById($id: Long!) {
     user(id: $id) {
       id
       name
-      age
+      email
     }
   }
 `;
 
 export default function useGetUsersApi() {
-  return useQuery(GET_ONE_USER);
+  return useQuery(GET_USER_BY_ID);
 }
