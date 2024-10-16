@@ -2,7 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 
 export const GET_ALL_USERS = gql`
   query getAllUsers {
-    users {
+    getAllUsers {
       id
       name
       email
@@ -10,6 +10,6 @@ export const GET_ALL_USERS = gql`
   }
 `;
 
-export default function useGetUsersApi() {
+export default function useGetAllUsersApi() {
   return useQuery(GET_ALL_USERS);
 }
