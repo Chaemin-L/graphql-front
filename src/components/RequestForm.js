@@ -1,10 +1,14 @@
 import { useState } from "react";
 import usePostUserApi from "../api/usePostUserApi";
+import useDeleteUserApi from "../api/useDeleteUserApi";
 
 const RequestForm = ({ mode, setData }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [userId, setUserId] = useState();
+
   const [postUser] = usePostUserApi();
+  const [deleteUser] = useDeleteUserApi();
 
   if (mode === "get") return <></>;
   return (
@@ -42,8 +46,18 @@ const RequestForm = ({ mode, setData }) => {
 
       {mode === "delete" && (
         <>
-          <input type="number" placeholder="userId" />
-          <button type="submit">전송</button>
+          <input
+            type="number"
+            placeholder="userId"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+          />
+          <button
+            type="submit"
+            onClick={() => deleteUser({ variables: { id: userId } })}
+          >
+            전송
+          </button>
         </>
       )}
       {mode === "update" && (
