@@ -21,10 +21,12 @@ main {
   display: flex;
   padding: 0;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .user-card {
   width: 200px;
+  min-width: 200px;
   height: 150px;
   padding: 10px;
   border: 1px solid #bbb;

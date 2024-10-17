@@ -1,14 +1,16 @@
 import { useState } from "react";
 import usePostUserApi from "../api/usePostUserApi";
 import useDeleteUserApi from "../api/useDeleteUserApi";
+import useUpdateUserApi from "../api/useUpdateUserApi";
 
-const RequestForm = ({ mode, setData }) => {
+const RequestForm = ({ mode }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [userId, setUserId] = useState();
 
   const [postUser] = usePostUserApi();
   const [deleteUser] = useDeleteUserApi();
+  const [updateUser] = useUpdateUserApi();
 
   if (mode === "get") return <></>;
   return (
@@ -62,10 +64,32 @@ const RequestForm = ({ mode, setData }) => {
       )}
       {mode === "update" && (
         <>
-          <input type="number" placeholder="userId" />
-          <input type="text" placeholder="username" />
-          <input type="number" placeholder="age" />
-          <button type="submit">전송</button>
+          <input
+            type="number"
+            placeholder="userId"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="username"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button
+            type="submit"
+            onClick={(e) =>
+              updateUser({ variables: { id: userId, name, email } })
+            }
+          >
+            전송
+          </button>
         </>
       )}
     </>
